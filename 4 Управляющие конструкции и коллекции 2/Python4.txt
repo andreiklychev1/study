@@ -1,0 +1,108 @@
+# Задача №1
+geo_logs = [
+    {'visit1': ['Москва', 'Россия']},
+    {'visit2': ['Дели', 'Индия']},
+    {'visit3': ['Владимир', 'Россия']},
+    {'visit4': ['Лиссабон', 'Португалия']},
+    {'visit5': ['Париж', 'Франция']},
+    {'visit6': ['Лиссабон', 'Португалия']},
+    {'visit7': ['Тула', 'Россия']},
+    {'visit8': ['Тула', 'Россия']},
+    {'visit9': ['Курск', 'Россия']},
+    {'visit10': ['Архангельск', 'Россия']}
+]
+geo_logs_filtered=[]
+
+for element in geo_logs:
+    for country in element.values():
+        if 'Россия' in country:
+            geo_logs_filtered.append(element)
+            
+print(geo_logs_filtered)
+
+# Задача №2
+ids = {'user1': [213, 213, 213, 15, 213], 
+       'user2': [54, 54, 119, 119, 119], 
+       'user3': [213, 98, 98, 35]}
+       
+user1 = set(ids['user1'])
+user2 = set(ids['user2'])
+user3 = set(ids['user3'])
+
+user1.update(user2, user1.symmetric_difference(user3))
+
+print(list(user1))
+
+
+# Задача №3
+
+queries = [
+    'смотреть сериалы онлайн',
+    'новости спорта',
+    'афиша кино',
+    'курс доллара',
+    'сериалы этим летом',
+    'курс по питону',
+    'сериалы про спорт',
+    'более длинная фраза для проверки',
+    'чуть менее длинная фраза'
+]
+
+array=[]
+
+for element in queries:
+    array.append(element.split(' '))
+
+lengths_amount = []
+
+for part in array:
+    lengths_amount.append(len(part))
+
+lengths_amount.sort()    
+unique_lengths = list(set(lengths_amount))
+
+i=0
+summa=0
+
+for element in enumerate(lengths_amount):
+    if unique_lengths[i] == element[1]:
+        summa += 1
+        distribution = summa/len(lengths_amount)
+        if element[0] == len(lengths_amount)-1:
+            print('Кол-во запросов из', element[1], 'слов составляет:', 100*round(distribution, 2),'%')
+    else:
+        print('Кол-во запросов из', element[1]-1, 'слов составляет', 100*round(distribution, 2),'%')
+        summa=1
+        i += 1
+        distribution = summa/len(lengths_amount)
+        if element[0] == len(lengths_amount)-1:
+            print('Кол-во запросов из', element[1], 'слов составляет:', 100*round(distribution, 2),'%')
+
+
+# Задача №4
+
+stats = {'facebook': 55, 'yandex': 120, 'vk': 115, 'google': 99, 'email': 42, 'ok': 98}
+
+numbers = list(stats.values())
+greatest = numbers[0]
+for element in numbers:
+    if element > greatest:
+        greatest = element
+
+for element in list(stats.keys()):
+    if stats[element] == greatest:
+        print(element)
+
+
+# Задача №5
+
+data = ['2018-01-01', 'yandex', 'cpc', 100]
+
+data.reverse()
+znachenie=data[0]
+
+for element in data[1 : len(data)]:
+    znachenie = {element: znachenie}
+
+print(znachenie)
+
